@@ -41,7 +41,8 @@ COMMON_STRINGS = {
 
 class BibDatabase(object):
     """
-    Bibliographic database object that follows the data structure of a BibTeX file.
+    Bibliographic database object that follows the data structure of a BibTeX
+    file.
     """
     def __init__(self):
         #: List of BibTeX entries, for example `@book{...}`, `@article{...}`, etc. Each entry is a simple dict with
@@ -63,7 +64,8 @@ class BibDatabase(object):
         self.strings.update(COMMON_STRINGS)
 
     def get_entry_list(self):
-        """Get a list of bibtex entries.
+        """
+        Get a list of bibtex entries.
 
         :returns: BibTeX entries
         :rtype: list
@@ -80,7 +82,8 @@ class BibDatabase(object):
         return tuple(result)
 
     def get_entry_dict(self):
-        """Return a dictionary of BibTeX entries.
+        """
+        Return a dictionary of BibTeX entries.
         The dict key is the BibTeX entry key
         """
         # If the hash has never been made, make it
@@ -95,7 +98,7 @@ class BibDatabase(object):
         try:
             return self.strings[name]
         except KeyError:
-            raise(KeyError("Unknown string: {}.".format(name)))
+            raise KeyError("Unknown string: {}.".format(name))
 
 
 class BibDataString(object):

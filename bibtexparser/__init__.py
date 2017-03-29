@@ -1,11 +1,14 @@
 """
-`BibTeX <http://en.wikipedia.org/wiki/BibTeX>`_ is a bibliographic data file format.
+`BibTeX <http://en.wikipedia.org/wiki/BibTeX>`_ is a bibliographic data file
+format.
 
-The :mod:`bibtexparser` module can parse BibTeX files and write them. The API is similar to the
-:mod:`json` module. The parsed data is returned as a simple :class:`BibDatabase` object with the main attribute being
-:attr:`entries` representing bibliographic sources such as books and journal articles.
+The :mod:`bibtexparser` module can parse BibTeX files and write them. The API
+is similar to the :mod:`json` module. The parsed data is returned as a simple
+:class:`BibDatabase` object with the main attribute being :attr:`entries`
+representing bibliographic sources such as books and journal articles.
 
-The following functions provide a quick and basic way to manipulate a BibTeX file.
+The following functions provide a quick and basic way to manipulate a BibTeX
+file.
 More advanced features are also available in this module.
 
 Parsing a file is as simple as::
@@ -21,15 +24,17 @@ And writing::
         bibtexparser.dump(bibtex_database, bibtex_file)
 
 """
+import sys
+
+from . import (
+    bibdatabase, bibtexexpression, bparser, bwriter, latexenc, customization
+)
+
 __all__ = [
     'loads', 'load', 'dumps', 'dump', 'bibdatabase',
     'bparser', 'bwriter', 'bibtexexpression', 'latexenc', 'customization',
 ]
 __version__ = '0.6.2'
-
-import sys
-
-from . import bibdatabase, bibtexexpression, bparser, bwriter, latexenc, customization
 
 
 def loads(bibtex_str, parser=None):
@@ -107,7 +112,7 @@ def dump(bib_database, bibtex_file, writer=None):
     """
     if writer is None:
         writer = bwriter.BibTexWriter()
-    if sys.version_info >= (3, 0):
+    if sys.version_info.major == 3:
         bibtex_file.write(writer.write(bib_database))
     else:
         # Encode to UTF-8
